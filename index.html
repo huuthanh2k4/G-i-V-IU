@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gửi cậu</title>
+    <style>
+  body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            overflow: hidden;
+        }
+
+
+.container {
+    text-align: center;
+}
+
+#gifContainerImg {
+    width: 60%;
+    height: 60%;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 10px;
+    cursor: pointer;
+}
+#siBtn {
+    padding: 10px 20px; 
+    font-size: 16px;
+    margin: 10px;
+    cursor: pointer;
+    background-color: #009705; 
+    color: white;
+    border: 2px solid #FFC0CB; 
+    border-radius: 10px; 
+}
+
+#noBtn {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 10px;
+    cursor: pointer;
+    background-color: #FF5733; 
+    color: white;
+    border: 2px solid #FFC0CB; 
+    border-radius: 10px;
+}
+#noBtn span {
+    font-size: 18px;
+    color: #fcf4f4; 
+
+}
+
+#siBtn:hover {
+    background-color: #053a03;
+}
+#noBtn:hover {
+    background-color: #641e0d;
+}
+.bg-green {
+    background-color: #ffffff;
+}
+
+#messageContainer {
+    font-size: 30px;
+    color: #FF0000; 
+    font-family: 'YourDesiredFont', sans-serif;
+    text-shadow: 2px 2px 4px #000;
+    animation: pulse 0.5s infinite alternate; 
+}
+
+@keyframes pulse {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.3);
+    }
+}
+
+.heart {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: #ff6f61;
+            transform: rotate(45deg);
+            animation: float 4s ease-in-out infinite;
+            border-radius: 50%;
+            margin-top: 100%;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: #ff6f61;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -7.5px;
+            left: 0;
+        }
+
+        .heart::after {
+            left: -7.5px;
+            top: 0;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(45deg);
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(45deg);
+                opacity: 0;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <div id="gifContainer">
+            <img id="gifContainerImg" src="mocha.gif" alt="Ositos Iniciales" >
+        </div>
+        <div id="happyGifContainer" style="display: none;">
+            <img src="mocha5final.gif" alt="Ositos Felices" style="width: 100%; height: 100%;">
+        </div>
+        <div id="happyGifContainer2" style="display: none;">
+            <img src="mocha6final.gif" alt="Ositos Felices" style="width: 100%; height: 100%;">
+        </div>
+        <div id="happyGifContainer3" style="display: none;">
+            <img src="mocha7final.gif" alt="Ositos Felices" style="width: 100%; height: 100%;">
+        </div>
+        <div id="happyGifContainer4" style="display: none;">
+            <img src="mocha9final.gif" alt="Ositos Felices" style="width: 100%; height: 100%;">
+        </div>
+        <div id="sadGifContainer" style="display: none;">
+            <img src="mocha2.gif" alt="Osito Triste" style="width: 80%; height: 80%;">
+        </div>
+
+        
+        
+        <h1 id="question">Cậu iu ơi!<br>
+                Nhận món quà của tớ mua cho cậu đi 🥹</h1>
+        <div id="messageContainer" style="display: none;" ></div>
+
+        <button id="siBtn">Tớ nhận</button>
+        <button id="noBtn">Không</button>
+        
+    </div>
+
+    <script>
+        let noButtonClickCount = 0;
+let noButtonState = 0;
+
+const messages = [
+    "Cậu có chắc là không nhận không? 😢",
+    "Thôi mà, nhận đi mà! 🥺",
+    "Tớ đã cố gắng rất nhiều để làm điều này...",
+    "Cậu không nhận thật sao? 😭",
+    "Nhận đi, không thì tớ buồn lắm đấy!",
+    "Cậu đang đùa tớ đúng không? 😔",
+    "Đừng từ chối nữa mà, làm ơn! 💔"
+];
+
+const sadGifUrls = [
+    "mocha2.gif",
+    "mocha3.gif",
+    "mocha4.gif",
+    "9e497f8c506f6a79c406e347634ecdb5.gif",
+    "e6246ef8cd337fac6425b54d9fdcc98b.gif",
+    "8b520a45c87da5509c96e9d2e2eafe4a.gif",
+    "862e8c07cf761d7170fc8957b10dd04c.gif"
+];
+
+document.getElementById("gifContainer").style.display = "block";
+
+document.getElementById("siBtn").addEventListener("click", function () {
+    document.getElementById("sadGifContainer").style.display = "none";
+    document.getElementById("gifContainer").style.display = "none";
+    document.getElementById("happyGifContainer").style.display = "block";
+
+    document.getElementById("question").style.display = "none";
+    document.getElementById("siBtn").style.display = "none";
+    document.body.classList.add("bg-green");
+    document.getElementById("noBtn").style.display = "none";
+
+    document.getElementById("messageContainer").style.display = "block";
+    document.getElementById("messageContainer").innerHTML =
+        "Cậu nhận quà rồi, làm tớ vui cả ngày luôn đây này!<33";
+
+    setTimeout(function () {
+        document.getElementById("happyGifContainer").style.display = "none";
+        document.getElementById("happyGifContainer2").style.display = "block";
+    }, 1000);
+
+    setTimeout(function () {
+        document.getElementById("happyGifContainer2").style.display = "none";
+        document.getElementById("happyGifContainer3").style.display = "block";
+    }, 2000);
+    setTimeout(function () {
+        document.getElementById("happyGifContainer3").style.display = "none";
+        document.getElementById("happyGifContainer4").style.display = "block";
+    }, 3000);
+});
+
+document.getElementById("noBtn").addEventListener("click", function () {
+    if (noButtonState < messages.length) {
+        document.getElementById("messageContainer").style.display = "block";
+        document.getElementById("messageContainer").innerHTML = messages[noButtonState];
+
+        // Thay đổi GIF
+        document.getElementById("gifContainerImg").src = sadGifUrls[noButtonState];
+
+        noButtonState++;
+    } else {
+        document.getElementById("messageContainer").innerHTML = "Cậu làm tớ buồn thật rồi... 😢";
+
+        // Di chuyển nút "Không" đến vị trí ngẫu nhiên
+        const randomX = Math.random() * 80; // Vị trí ngang (đơn vị %)
+        const randomY = Math.random() * 80; // Vị trí dọc (đơn vị %)
+        const noBtn = document.getElementById("noBtn");
+
+        noBtn.style.position = "absolute";
+        noBtn.style.left = randomX + "vw";
+        noBtn.style.top = randomY + "vh";
+    }
+});
+
+
+for (let i = 0; i < 50; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDelay = Math.random() * 2 + 's';
+        heart.style.animationDuration = 4 + Math.random() * 2 + 's';
+        document.body.appendChild(heart);
+    }
+
+    </script>
+</body>
+</html>
